@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+    .main-content-wrapper{
+        padding: 24px 0px;
+        @media (min-width: 990px) {
+            padding: 24px 15px;
+        }
+    }
+    .dropdown-toggle:after{
+        display: none;
+    }
+}
