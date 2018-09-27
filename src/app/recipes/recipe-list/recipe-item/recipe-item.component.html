@@ -1,1 +1,14 @@
-<!-- <p>Recepie Item</p> -->
+<a href="#" (click)="onShowItemDetails(recipe)" class="list-group-item list-group-item-action float-left clearfix">
+    <div class="float-left">
+        <h5 class="list-group-item-heading">{{ recipe.name }}</h5>
+        <p class="list-group-item-text">{{ recipe.description }}</p>
+    </div>
+    <div class="float-right">
+        <img
+            [src]="recipe.imagePath"
+            [alt]="recipe.name" 
+            class="img-fluid"
+            style="max-height: 100px;"
+            >
+    </div>
+</a>
