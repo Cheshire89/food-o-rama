@@ -4,19 +4,35 @@
       <div class="form-group row">
         <div class="col-sm-9">
           <label for="inName">Name</label>
-          <input type="text" name="inName" id="inName" class="form-control">
+
+          <input type="text" 
+              name="inName"
+              id="inName" 
+              class="form-control"
+              #nameInput>
         </div>
         <div class="col-sm-3">
           <label for="inAmount">Amount</label>
-          <input type="number" name="inAmount" id="inAmount" class="form-control">
+
+          <input type="number" 
+              name="inAmount" 
+              id="inAmount" 
+              class="form-control"
+              #amountInput>
         </div>
       </div>
       <div class="form-group row">
         <div class="col-sm-12 text-right">
           <div class="btn-group">
-            <button type="submit" class="btn btn-outline-success">Add</button>
-            <button type="button" class="btn btn-outline-danger">Delete</button>
-            <button type="button" class="btn btn-outline-primary">Clear</button>
+            <button type="submit" 
+                    class="btn btn-outline-success"
+                    (click)="onAddItem()">Add</button>
+            <button type="button" 
+                    class="btn btn-outline-danger"
+                    (click)="onDeleteItem()">Delete</button>
+            <button type="button" 
+                    class="btn btn-outline-primary"
+                    (click)="onClear()">Clear</button>
           </div>
         </div>
       </div>
