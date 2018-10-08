@@ -7,15 +7,15 @@
             <h5 class="card-title">{{ recipe.name }}</h5>
             <p class="card-text">{{ recipe.description}}</p>
             <div class="btn-group float-right">
-              <button class="btn btn-outline-success">
-                Add
-              </button>
-              <button class="btn btn-outline-primary">
-                Edit
-              </button>
-              <button class="btn btn-outline-danger">
-                Delete
-              </button>
+                <button class="btn nav-link dropdown-toggle" appDropdown>
+                  <i class="fas fa-edit"></i>&nbsp;
+                  Manage Recepie
+                </button>
+                <div class="dropdown-menu">
+                  <li class="dropdown-item" href="#">Add</li>
+                  <li class="dropdown-item" href="#">Edit</li>
+                  <li class="dropdown-item" href="#">Delete</li>
+                </div>
             </div>
           </div>
       </div>
