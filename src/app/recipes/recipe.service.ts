@@ -1,14 +1,19 @@
 import { Recipe } from './recipe.model';
-import { EventEmitter } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Ingredient } from '../shared/ingredient.model';
+import { ShoppingListService } from '../shopping-list/shopping-list.service';
+
+@Injectable()
 
 export class RecipeService {
+    constructor(private shoppingListService: ShoppingListService){}
+
     recipeSelected = new EventEmitter<Recipe>();
 
     private recipes: Recipe[] = [
         new Recipe(
-          'Burger', 
-          'This is a test recipe', 
+          'Burger !', 
+          'A hamburger, beefburger or burger is a sandwich consisting of one or more cooked patties of ground meat, usually beef, placed inside a sliced bread roll or bun. The patty may be pan fried, grilled, or flame broiled.', 
           'https://www.goodfood.com.au/content/dam/images/h/0/f/a/q/i/image.related.wideLandscape.940x529.h0fa4n.png/1515456591895.jpg',
           [
             new Ingredient('Meat', 1),
@@ -17,8 +22,8 @@ export class RecipeService {
             new Ingredient('Letuce', 1),
           ]),
         new Recipe(
-          'Sushi!', 
-          'Om nom nom', 
+          'Sushi !', 
+          'Sushi is a Japanese dish of specially prepared vinegared rice, usually with some sugar and salt, combined with a variety of ingredients, such as seafood, vegetables, and occasionally tropical fruits', 
           'https://staybarcelonaapartments.com/blog/wp-content/uploads/2016/12/6x4-rolls-monster-sushi-barcelona.jpg', [
             new Ingredient('Rice', 1),
             new Ingredient('Fish', 1),
@@ -28,5 +33,9 @@ export class RecipeService {
     
     getRecipes() {
         return this.recipes.slice();
+    }
+
+    addIngredientsToShoppingList(ingredients: Ingredient[]){
+        this.shoppingListService.addIngredients(ingredients);
     }
 }

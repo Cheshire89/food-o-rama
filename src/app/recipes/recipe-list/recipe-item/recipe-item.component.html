@@ -1,9 +1,9 @@
 <a href="#" (click)="onSelected(recipe)" class="list-group-item list-group-item-action float-left clearfix">
-    <div class="float-left">
+    <div class="float-left" style="max-width: 75%;">
         <h5 class="list-group-item-heading">{{ recipe.name }}</h5>
         <p class="list-group-item-text">{{ recipe.description }}</p>
     </div>
-    <div class="float-right">
+    <div class="float-right" style="max-width: 25%;">
         <img
             [src]="recipe.imagePath"
             [alt]="recipe.name" 
