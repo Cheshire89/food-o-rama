@@ -3,11 +3,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-12">
-
-        <app-recipes *ngIf="activatedTab === 'recipe'" class="row"></app-recipes>
-
-        <app-shopping-list *ngIf="activatedTab === 'shopping-list'" class="row justify-content-around"></app-shopping-list>
-
+        <router-outlet></router-outlet>
       </div>
     </div>
   </div>

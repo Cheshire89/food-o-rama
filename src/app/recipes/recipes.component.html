@@ -1,23 +1,25 @@
-<div class="col-6">
-  <app-recipe-list class="row"></app-recipe-list>
-</div>
-<div class="col-6">
-  <div class="row">
-    <div class="col">
-      <h2>Details</h2>
-    </div>
+<div class="row">
+  <div class="col-6">
+    <app-recipe-list class="row"></app-recipe-list>
   </div>
-
-  <app-recipe-detail
-      *ngIf="selectedRecipe; else infoText"
-      [recipe]="selectedRecipe"
-      class="row"></app-recipe-detail>
-  
-  <ng-template #infoText>
-    <div class="row h-100 bg-light d-flex justify-content-center align-items-center">
+  <div class="col-6">
+    <div class="row">
       <div class="col">
-        <p class="text-center">Please Select a Recipe!</p>
+        <h2>Details</h2>
       </div>
     </div>
-  </ng-template>
+
+    <app-recipe-detail
+        *ngIf="selectedRecipe; else infoText"
+        [recipe]="selectedRecipe"
+        class="row"></app-recipe-detail>
+
+    <ng-template #infoText>
+      <div class="row h-100 bg-light d-flex justify-content-center align-items-center">
+        <div class="col">
+          <p class="text-center">Please Select a Recipe!</p>
+        </div>
+      </div>
+    </ng-template>
+  </div>
 </div>
