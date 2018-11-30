@@ -1,44 +1,51 @@
-<div class="col">
-  <div class="row">
-    <div class="col">
-      <div class="card">
-          <img class="card-img-top img-fluid" [src]="recipe.imagePath" alt="{{ recipe.name }}">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-12">
-                  <h5 class="card-title">{{ recipe.name }}</h5>
-                  <p class="card-text">{{ recipe.description}}</p>
-              </div>
-            </div>
-            <br>
-            <div class="row">
-              <div class="col-12">
-                <h6 class="card-title">Ingreditents</h6>
-                <ul class="list-inline">
-                  <li class="list-inline-item"
-                    *ngFor="let ingredient of recipe.ingredients">
-                    <span class="badge badge-light">
-                      {{ ingredient.name }}: {{ingredient.amount}}
-                    </span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-
-
-            <div class="btn-group float-right">
-                <button class="btn nav-link dropdown-toggle" appDropdown>
-                  <i class="fas fa-edit"></i>&nbsp;
-                  Manage Recepie
-                </button>
-                <div class="dropdown-menu">
-                  <li class="dropdown-item" (click)="onAddToShoppingList()" style="cursor: pointer;">Add</li>
-                  <li class="dropdown-item" style="cursor: pointer;">Edit</li>
-                  <li class="dropdown-item" style="cursor: pointer;">Delete</li>
+<div class="row">
+  <div class="col-12">
+    <h2>Details</h2>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+            <img class="card-img-top img-fluid" [src]="recipe.imagePath" alt="{{ recipe.name }}">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-12">
+                    <h5 class="card-title">{{ recipe.name }}</h5>
+                    <p class="card-text">{{ recipe.description}}</p>
                 </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-12">
+                  <h6 class="card-title">Ingreditents</h6>
+                  <ul class="list-inline">
+                    <li class="list-inline-item"
+                      *ngFor="let ingredient of recipe.ingredients">
+                      <span class="badge badge-light">
+                        {{ ingredient.name }}: {{ingredient.amount}}
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+
+
+              <div class="btn-group float-right">
+                  <button class="btn nav-link dropdown-toggle" appDropdown>
+                    <i class="fas fa-edit"></i>&nbsp;
+                    Manage Recepie
+                  </button>
+                  <div class="dropdown-menu">
+                    <li class="dropdown-item" (click)="onAddToShoppingList()" style="cursor: pointer;">Add</li>
+                    <li class="dropdown-item" [routerLink]="['edit']" style="cursor: pointer;">Edit</li>
+                    <li class="dropdown-item" style="cursor: pointer;">Delete</li>
+                  </div>
+              </div>
             </div>
-          </div>
+        </div>
       </div>
     </div>
   </div>
