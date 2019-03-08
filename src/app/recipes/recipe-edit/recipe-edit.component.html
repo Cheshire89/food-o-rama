@@ -27,10 +27,10 @@
         <div class="form-group col-12">
             <label for="itemImgDescription">Description</label>
         </div>
-        <div class="form-group col-6">
+        <div class="form-group col-6" *ngIf="editMode">
           <img [src]="recipeForm.value.itemImgPath" [alt]="recipeForm.value.itemName" class="img-fluid" style="max-width: 350px;">
         </div>
-        <div class="form-group col-6">
+        <div class="form-group" [ngClass]="{'col': !editMode, 'col-6': editMode}">
             <textarea
               type="text"
               id="itemImgDescription"
