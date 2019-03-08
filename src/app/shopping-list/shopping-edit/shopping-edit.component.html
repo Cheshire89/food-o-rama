@@ -1,38 +1,44 @@
 <div class="row">
   <div class="col-12">
-    <form action="" class="form form-horizontal">
-      <div class="form-group row">
-        <div class="col-sm-9">
+    <form (ngSubmit)="onSubmit()" #f="ngForm" class="form form-horizontal">
+      <div class="form-row">
+        <div class="form-group col-9">
           <label for="inName">Name</label>
-
-          <input type="text" 
+          <input type="text"
               name="inName"
-              id="inName" 
+              id="inName"
               class="form-control"
-              #nameInput>
+              ngModel
+              required>
         </div>
-        <div class="col-sm-3">
+        <div class="form-group col-3">
           <label for="inAmount">Amount</label>
 
-          <input type="number" 
-              name="inAmount" 
-              id="inAmount" 
+          <input type="number"
+              name="inAmount"
+              id="inAmount"
               class="form-control"
-              #amountInput>
+              ngModel
+              required
+              pattern="^[1-9]+[0-9]*$"
+              min="1"
+              >
         </div>
       </div>
-      <div class="form-group row">
+      <div class="form-group">
         <div class="col-sm-12 text-right">
           <div class="btn-group">
-            <button type="submit" 
-                    class="btn btn-outline-success"
-                    (click)="onAddItem()">Add</button>
-            <button type="button" 
-                    class="btn btn-outline-danger"
-                    (click)="onDeleteItem()">Delete</button>
-            <button type="button" 
-                    class="btn btn-outline-primary"
-                    (click)="onClear()">Clear</button>
+            <button type="submit"
+                    class="btn btn-success" [disabled]="!f.valid">
+                    {{ config.editMode ? 'Update' : 'Add' }}
+            </button>
+            <button type="button"
+                    *ngIf="config.editMode"
+                    (click)="onDeleteItem(f)"
+                    class="btn btn-danger">Delete</button>
+            <button type="button"
+                    (click)="onClear(f)"
+                    class="btn btn-primary">Clear</button>
           </div>
         </div>
       </div>
