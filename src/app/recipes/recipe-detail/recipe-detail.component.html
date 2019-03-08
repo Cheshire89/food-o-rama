@@ -39,9 +39,9 @@
                     Manage Recepie
                   </button>
                   <div class="dropdown-menu">
-                    <li class="dropdown-item" (click)="onAddToShoppingList()" style="cursor: pointer;">Add</li>
+                    <li class="dropdown-item" (click)="onAddToShoppingList()" style="cursor: pointer;">Add To Shopping List</li>
                     <li class="dropdown-item" [routerLink]="['edit']" style="cursor: pointer;">Edit</li>
-                    <li class="dropdown-item" style="cursor: pointer;">Delete</li>
+                    <li class="dropdown-item" (click)="onDeleteRecipe()" style="cursor: pointer;">Delete</li>
                   </div>
               </div>
             </div>

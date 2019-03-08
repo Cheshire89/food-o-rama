@@ -2,21 +2,22 @@
   <div class="col-12">
     <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
-          <label for="imgName">Name</label>
+          <label for="name">Name</label>
           <input
             type="text"
-            id="itemName"
-            formControlName="itemName"
+            id="name"
+            formControlName="name"
             class="form-control">
       </div>
 
       <div class="form-group">
-          <label for="itemImgPath">Image Url</label>
+          <label for="imagePath">Image Url</label>
           <input
             type="text"
-            id="itemImgPath"
-            formControlName="itemImgPath"
-            class="form-control">
+            id="imagePath"
+            formControlName="imagePath"
+            class="form-control"
+            #imagePath>
       </div>
       <div class="form-row">
         <div class="col-12">
@@ -25,16 +26,16 @@
       </div>
       <div class="form-row">
         <div class="form-group col-12">
-            <label for="itemImgDescription">Description</label>
+            <label for="description">Description</label>
         </div>
         <div class="form-group col-6" *ngIf="editMode">
-          <img [src]="recipeForm.value.itemImgPath" [alt]="recipeForm.value.itemName" class="img-fluid" style="max-width: 350px;">
+          <img [src]="imagePath.value" [alt]="recipeForm.value.itemName" class="img-fluid" style="max-width: 350px;">
         </div>
         <div class="form-group" [ngClass]="{'col': !editMode, 'col-6': editMode}">
             <textarea
               type="text"
-              id="itemImgDescription"
-              formControlName="itemImgDescription"
+              id="description"
+              formControlName="description"
               rows="9"
               class="form-control">
             </textarea>
@@ -45,7 +46,7 @@
           <hr>
         </div>
       </div>
-      <div formArrayName="itemIngredients">
+      <div formArrayName="ingredients">
         <div class="form-row" *ngFor="let ingredientCtrl of getControls(); let i = index;" [formGroupName]="i">
           <div class="form-group col-9">
             <input type="text" id="name" formControlName="name" class="form-control">
@@ -54,7 +55,7 @@
             <input type="number" min="0" id="amount" formControlName="amount" class="form-control">
           </div>
           <div class="form-group col">
-            <button type="button" name="" id="" class="btn btn-danger float-right">
+            <button type="button" (click)="onRemoveIngredient(index)" name="" id="" class="btn btn-danger float-right">
               <i class="fas fa-times"></i>
             </button>
           </div>
@@ -64,7 +65,7 @@
         <div class="col form-group">
             <hr>
             <button type="submit" [disabled]="!recipeForm.valid" class="btn btn-outline-success mar-r-5">Save</button>
-            <button type="button" class="btn btn-outline-danger">Cancel</button>
+            <button type="button" (click)="onCancel()" class="btn btn-outline-danger">Cancel</button>
             <button type="button" (click)="onAddIngredient()" class="btn btn-outline-primary float-right">Add Ingredient</button>
         </div>
       </div>
