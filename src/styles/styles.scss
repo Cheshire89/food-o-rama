@@ -1,4 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'global/utility';
+@import 'global/forms';
+@import 'global/validation';
+
 body{
     .main-content-wrapper{
         padding: 24px 0px;
