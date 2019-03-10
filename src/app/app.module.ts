@@ -24,6 +24,10 @@ import { RecipeService } from './recipes/recipe.service';
 import { DataStorageService } from './shared/data-storage.service';
 import { ShoppingListService } from './shopping-list/shopping-list.service';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SignupComponent, SignupContent} from './auth/signup/signup.component';
+import { SigninComponent, SigninContent } from './auth/signin/signin.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,15 +41,21 @@ import { ShoppingListService } from './shopping-list/shopping-list.service';
     DropdownDirective,
     RecipeStartComponent,
     RecipeEditComponent,
+    SignupComponent,
+    SignupContent,
+    SigninComponent,
+    SigninContent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    HttpModule
+    HttpModule,
+    NgbModule
   ],
   providers: [ShoppingListService, RecipeService, DataStorageService],
+  entryComponents: [SignupContent, SigninContent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

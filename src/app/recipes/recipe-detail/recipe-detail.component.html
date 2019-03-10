@@ -34,15 +34,9 @@
 
 
               <div class="btn-group float-right">
-                  <button class="btn nav-link dropdown-toggle" appDropdown>
-                    <i class="fas fa-edit"></i>&nbsp;
-                    Manage Recepie
-                  </button>
-                  <div class="dropdown-menu">
-                    <li class="dropdown-item" (click)="onAddToShoppingList()" style="cursor: pointer;">Add To Shopping List</li>
-                    <li class="dropdown-item" [routerLink]="['edit']" style="cursor: pointer;">Edit</li>
-                    <li class="dropdown-item" (click)="onDeleteRecipe()" style="cursor: pointer;">Delete</li>
-                  </div>
+                <li class="btn btn-sm btn-outline-success" (click)="onAddToShoppingList()" style="cursor: pointer;">Add To Shopping List</li>
+                <li class="btn btn-sm btn-outline-primary" [routerLink]="['edit']" style="cursor: pointer;">Edit Recipe</li>
+                <li class="btn btn-sm btn-outline-danger" (click)="onDeleteRecipe()" style="cursor: pointer;">Delete Recipe</li>
               </div>
             </div>
         </div>
