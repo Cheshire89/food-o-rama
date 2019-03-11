@@ -4,8 +4,10 @@
 
 export const environment = {
   production: false,
-  api_url: 'https://food-o-rama.firebaseio.com/'
+  api_url: 'https://food-o-rama.firebaseio.com/',
+  auth_key: 'AIzaSyCHKEiMwxLR-dUltI2SiVDoevyHs4MFrao'
 };
+
 
 /*
  * In development mode, to ignore zone related error stack frames such as

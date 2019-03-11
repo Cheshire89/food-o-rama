@@ -1,28 +1,54 @@
+import { environment } from '../environments/environment';
+
+// Angular Dependencies
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+
+// Third Party
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
 
 import { AppRoutingModule } from './app-router.module';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 
-import { RecipesComponent } from './recipes/recipes.component';
-import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component';
-import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
-import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-item.component';
-import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
-import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
+import {
+  RecipesComponent,
+  RecipeListComponent,
+  RecipeDetailComponent,
+  RecipeItemComponent,
+  RecipeStartComponent,
+  RecipeEditComponent,
+  RecipeService
+} from './recipes';
 
-import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
+import {
+  ShoppingListComponent,
+  ShoppingEditComponent,
+  ShoppingListService
+} from './shopping-list';
 
+import {
+  DropdownDirective,
+  DataStorageService
+} from './shared';
 
-import { DropdownDirective } from './shared/dropdown.directive';
-import { RecipeService } from './recipes/recipe.service';
-import { DataStorageService } from './shared/data-storage.service';
-import { ShoppingListService } from './shopping-list/shopping-list.service';
+import {
+  SignupComponent,
+  SignupContent,
+  SigninComponent,
+  SigninContent,
+  AuthService
+} from './auth';
+
+firebase.initializeApp({
+  apiKey: environment.auth_key,
+  authDomain: environment.api_url
+});
 
 @NgModule({
   declarations: [
@@ -37,15 +63,25 @@ import { ShoppingListService } from './shopping-list/shopping-list.service';
     DropdownDirective,
     RecipeStartComponent,
     RecipeEditComponent,
+    SignupComponent,
+    SignupContent,
+    SigninComponent,
+    SigninContent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    HttpModule
+    HttpModule,
+    NgbModule
   ],
-  providers: [ShoppingListService, RecipeService, DataStorageService],
+  providers: [ShoppingListService, RecipeService, DataStorageService, AuthService],
+  entryComponents: [SignupContent, SigninContent],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule implements OnInit {
+  ngOnInit() {
+
+  }
+ }
