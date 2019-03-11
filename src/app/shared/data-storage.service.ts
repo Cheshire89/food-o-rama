@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
-import { RecipeService } from '../recipes/recipe.service';
+import { RecipeService } from '../recipes';
 import { environment } from '../../environments/environment';
 import { Recipe } from './recipe.model';
 import 'rxjs/add/operator/map';
@@ -8,6 +8,7 @@ import 'rxjs/add/operator/map';
 @Injectable({
   providedIn: 'root'
 })
+
 export class DataStorageService {
   api_url = environment.api_url;
   constructor(private http: Http, private recipeService: RecipeService) { }
