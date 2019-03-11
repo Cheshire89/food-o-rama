@@ -8,7 +8,8 @@ import { HttpModule } from '@angular/http';
 
 // Third Party
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
 
 import { AppRoutingModule } from './app-router.module';
 
@@ -40,9 +41,14 @@ import {
   SignupComponent,
   SignupContent,
   SigninComponent,
-  SigninContent
+  SigninContent,
+  AuthService
 } from './auth';
 
+firebase.initializeApp({
+  apiKey: environment.auth_key,
+  authDomain: environment.api_url
+});
 
 @NgModule({
   declarations: [
@@ -70,15 +76,12 @@ import {
     HttpModule,
     NgbModule
   ],
-  providers: [ShoppingListService, RecipeService, DataStorageService],
+  providers: [ShoppingListService, RecipeService, DataStorageService, AuthService],
   entryComponents: [SignupContent, SigninContent],
   bootstrap: [AppComponent]
 })
 export class AppModule implements OnInit {
   ngOnInit() {
-    firebase.initializeApp({
-      apiKey: environment.auth_key,
-      authDomain: environment.api_url
-    });
+
   }
  }

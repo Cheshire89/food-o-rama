@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgForm } from '@angular/forms';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-signin-content',
@@ -9,15 +11,27 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 export class SigninContent implements OnInit {
   @Input() name;
-  constructor(public modal: NgbActiveModal) { }
+
+  constructor(
+    public modal: NgbActiveModal,
+    private authService: AuthService
+  ) { }
+
   ngOnInit() {}
 
   close() {
     this.modal.close({ success: false })
   }
 
-  save() {
-    this.modal.close({ success: true});
+  onSignin(form: NgForm) {
+    const email = form.value.email;
+    const password = form.value.password;
+    this.authService.signinUser(email, password)
+    .then( response => {
+      console.log('signIn', response)
+      this.modal.close({ success: true, data: response['user'] });
+    })
+    .catch( error => console.error('signIn', error));
   }
 }
 

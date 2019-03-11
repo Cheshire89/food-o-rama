@@ -4,8 +4,8 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
+  <form (ngSubmit)="onSignin(f)" #f="ngForm">
   <div class="modal-body">
-    <form>
       <div class="form-row form-group">
         <div class="col">
           <label for="email">Email</label>
@@ -18,9 +18,9 @@
           <input type="password" name="password" id="password" class="form-control" ngModel>
         </div>
       </div>
-    </form>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="close()">Close</button>
-    <button type="button" class="btn btn-primary" (click)="signin()">Signup</button>
-  </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="close()">Close</button>
+      <button type="sumbit" class="btn btn-primary">Signup</button>
+    </div>
+  </form>
