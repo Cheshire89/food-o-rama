@@ -1,4 +1,7 @@
 <div class="row">
+  <div class="col">
+    <h2>{{ action | titlecase }} Recipe</h2>
+  </div>
   <div class="col-12">
     <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
@@ -41,7 +44,7 @@
             </textarea>
         </div>
       </div>
-      <div class="form-row">
+      <div class="form-row" *ngIf="getControls().length > 0">
         <div class="form-group col-12">
           <hr>
         </div>

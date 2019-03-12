@@ -11,13 +11,15 @@ import { RecipeService } from '../recipe.service';
 export class RecipeEditComponent implements OnInit {
   id: number;
   editMode = false;
+  action: string;
   recipeForm: FormGroup;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private recipeService: RecipeService
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.route.params
@@ -25,6 +27,7 @@ export class RecipeEditComponent implements OnInit {
         (params: Params) => {
           this.id = + params['id'];
           this.editMode = params['id'] != null;
+          this.action = this.editMode ? 'edit' : 'add';
           this.initForm();
         }
       ) ;

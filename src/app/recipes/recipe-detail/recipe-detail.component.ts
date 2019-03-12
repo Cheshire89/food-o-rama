@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../../shared/recipe.model';
 import { RecipeService } from '../recipe.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -15,8 +16,11 @@ export class RecipeDetailComponent implements OnInit {
   constructor(
     private recipeService: RecipeService,
     private router: Router,
-    private route: ActivatedRoute
-  ) { }
+    private route: ActivatedRoute,
+    private dropdownConfig: NgbDropdownConfig
+  ) {
+    this.dropdownConfig.placement = 'top-right';
+   }
 
   ngOnInit() {
     this.route.params

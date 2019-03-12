@@ -1,24 +1,37 @@
 
-<div class="row">
+<!-- <div class="row">
   <div class="col-12">
     <h2>Shopping List</h2>
   </div>
-</div>
+</div> -->
 <div class="row">
   <div class="col-6">
-    <ul class="list-group">
-      <li class="list-group-item"
-        style="cursor:pointer;"
-        *ngFor="let ingredient of ingredients; let i = index"
-        (click)="onEditItem(i)" >
-        {{ ingredient.name }} ({{ ingredient.amount }})
-      </li>
-    </ul>
+    <div class="row">
+      <div class="col-12">
+        <ul class="list-group">
+          <li class="list-group-item"
+            style="cursor:pointer;"
+            *ngFor="let ingredient of ingredients; let i = index"
+            (click)="onEditItem(i)" >
+            {{ ingredient.name }} ({{ ingredient.amount }})
+          </li>
+        </ul>
+      </div>
+      <div class="col-12 mt-5">
+        <app-shopping-edit></app-shopping-edit>
+      </div>
+    </div>
   </div>
-</div>
-
-<div class="row mt-5">
   <div class="col-6">
-    <app-shopping-edit></app-shopping-edit>
+    <div class="row h-100 d-flex bg-light justify-content-center align-items-center mar-0">
+      <div class="col">
+        <p class="text-center fs-70 mar-b-5">
+          <i class="fas fa-shipping-fast"></i>
+        </p>
+        <p class="text-center">
+          Review list <b>Or</b> Add custom item
+        </p>
+      </div>
+    </div>
   </div>
 </div>

@@ -32,11 +32,15 @@
               </div>
 
 
-
-              <div class="btn-group float-right">
-                <li class="btn btn-sm btn-outline-success" (click)="onAddToShoppingList()" style="cursor: pointer;">Add To Shopping List</li>
-                <li class="btn btn-sm btn-outline-primary" [routerLink]="['edit']" style="cursor: pointer;">Edit Recipe</li>
-                <li class="btn btn-sm btn-outline-danger" (click)="onDeleteRecipe()" style="cursor: pointer;">Delete Recipe</li>
+              <div ngbDropdown>
+                <p class="text-dark text-right toggle-alt pad-t-15 mar-b-0 link" ngbDropdownToggle>
+                  Manage <i class="fas fa-edit"></i>
+                </p>
+                <div ngbDropdownMenu>
+                  <li ngbDropdownItem (click)="onAddToShoppingList()">Add To Shopping List</li>
+                  <li ngbDropdownItem [routerLink]="['edit']">Edit Recipe</li>
+                  <li ngbDropdownItem (click)="onDeleteRecipe()">Delete Recipe</li>
+                </div>
               </div>
             </div>
         </div>
