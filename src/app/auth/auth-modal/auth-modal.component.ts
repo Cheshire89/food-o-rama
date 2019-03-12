@@ -5,7 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-auth-modal',
-  template: '<span (click)="open()"> {{ modalName | uppercase }} </span>',
+  template: '<span (click)="open()"> {{ modalName | titlecase }} </span>',
   styleUrls: ['./auth-modal.component.scss']
 })
 export class AuthModalComponent implements OnInit {

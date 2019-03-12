@@ -3,6 +3,7 @@ import { Response } from '@angular/http';
 import { DataStorageService } from '../shared/data-storage.service';
 import { AuthService } from '../auth';
 import { Subscription } from 'rxjs';
+import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-header',
@@ -15,9 +16,11 @@ export class HeaderComponent implements OnInit, OnDestroy{
 
   constructor(
     private dataStorage: DataStorageService,
-    private authService: AuthService
+    private authService: AuthService,
+    private dropdownConfig: NgbDropdownConfig
   ) {
     this.userSignedIn = false;
+    this.dropdownConfig.placement = 'bottom-right';
   }
 
   ngOnInit() {

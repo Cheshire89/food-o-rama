@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light pad-tb-0">
   <div class="container-fluid">
 
-<a routerLink="/" class="navbar-brand" style="cursor: pointer;">Food-O-Rama</a>
+<a routerLink="/" class="navbar-brand" style="cursor: pointer;">food<b>O</b>rama</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -19,32 +19,38 @@
         </li>
       </ul>
       <ul class="navbar-nav ml-auto">
-          <li class="nav-item dropdown">
-              <!-- data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" -->
-            <button class="nav-link btn-link" appDropdown>
+          <li class="nav-item" ngbDropdown>
+            <button class="nav-link btn toggle-alt pad-tb-15" ngbDropdownToggle>
               <i class="fas fa-database"></i>
             </button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item"><span (click)="onSaveRecipes()">Save Data</span></a>
-              <a class="dropdown-item" (click)="onGetRecipes()">Fetch Data</a>
+            <div class="dropdown-menu" ngbDropdownMenu>
+              <button ngbDropdownItem><span (click)="onSaveRecipes()">Save Data</span></button>
+              <button ngbDropdownItem (click)="onGetRecipes()">Fetch Data</button>
             </div>
           </li>
-          <li class="nav-item dropdown">
-            <button class="nav-link btn-link" appDropdown>
+          <li class="nav-item" ngbDropdown>
+            <button class="nav-link btn toggle-alt pad-tb-15" ngbDropdownToggle>
               <span *ngIf="!userSignedIn">
                 <i class="fas fa-user-lock"></i>
               </span>
               <span *ngIf="userSignedIn">
-                <i class="fas fa-user"></i>
+                <i class="fas fa-user-cog"></i>
               </span>
             </button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item">
-                <app-auth-modal modalName="signup"></app-auth-modal>
-              </a>
-              <a class="dropdown-item">
-                <app-auth-modal modalName="signin"></app-auth-modal>
-              </a>
+            <div ngbDropdownMenu>
+              <ng-template [ngIf]="!userSignedIn">
+                <button ngbDropdownItem>
+                  <app-auth-modal modalName="signup"></app-auth-modal>
+                </button>
+                <button ngbDropdownItem>
+                  <app-auth-modal modalName="signin"></app-auth-modal>
+                </button>
+              </ng-template>
+              <ng-template [ngIf]="userSignedIn">
+                <button ngbDropdownItem>
+                  <span>Logout</span>
+                </button>
+              </ng-template>
             </div>
           </li>
 

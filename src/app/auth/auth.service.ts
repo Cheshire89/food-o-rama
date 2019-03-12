@@ -9,7 +9,7 @@ import { Subject } from 'rxjs';
 })
 export class AuthService {
   authChanged = new Subject();
-  token: string;
+  token: string = null;
   currentUser: boolean = null;
   constructor() {
   }
@@ -37,5 +37,8 @@ export class AuthService {
       )
   }
 
+  isAuthenticated() {
+    return this.token !== null;
+  }
 
 }

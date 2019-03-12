@@ -3,3 +3,10 @@
     border: 0px;
     margin: 0px 5px;
 }
+
+.btn{
+    &:focus, &:active, &:active:focus {
+        box-shadow: none;
+        outline: none;
+    }
+}

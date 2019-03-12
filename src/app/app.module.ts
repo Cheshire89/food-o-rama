@@ -33,7 +33,6 @@ import {
 } from './shopping-list';
 
 import {
-  DropdownDirective,
   DataStorageService
 } from './shared';
 
@@ -59,7 +58,6 @@ firebase.initializeApp({
     RecipeItemComponent,
     ShoppingListComponent,
     ShoppingEditComponent,
-    DropdownDirective,
     RecipeStartComponent,
     RecipeEditComponent,
     SignupContent,
