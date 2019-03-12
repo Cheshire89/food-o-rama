@@ -38,12 +38,11 @@ import {
 } from './shared';
 
 import {
-  SignupComponent,
   SignupContent,
-  SigninComponent,
   SigninContent,
   AuthService
 } from './auth';
+import { AuthModalComponent } from './auth/auth-modal/auth-modal.component';
 
 firebase.initializeApp({
   apiKey: environment.auth_key,
@@ -63,10 +62,9 @@ firebase.initializeApp({
     DropdownDirective,
     RecipeStartComponent,
     RecipeEditComponent,
-    SignupComponent,
     SignupContent,
-    SigninComponent,
-    SigninContent
+    SigninContent,
+    AuthModalComponent,
   ],
   imports: [
     BrowserModule,
