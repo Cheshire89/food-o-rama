@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 // Third Party
-  import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 
@@ -17,16 +17,8 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 
 import { RecipeService } from './recipes/recipes.service';
-
-import {
-  ShoppingListComponent,
-  ShoppingEditComponent,
-  ShoppingListService
-} from './shopping-list';
-
-import {
-  DataStorageService
-} from './shared';
+import { ShoppingListService } from './shopping-list/shopping-list.service';
+import { DataStorageService } from './shared';
 
 import { AuthModalComponent } from './auth/auth-modal/auth-modal.component';
 import {
@@ -37,6 +29,7 @@ import {
 } from './auth';
 
 import { RecipesModule } from './recipes/recipes.module';
+import { ShoppingListModule } from './shopping-list/shopping-list.module';
 
 
 firebase.initializeApp({
@@ -48,8 +41,6 @@ firebase.initializeApp({
   declarations: [
     AppComponent,
     HeaderComponent,
-    ShoppingListComponent,
-    ShoppingEditComponent,
     SignupContent,
     SigninContent,
     AuthModalComponent,
@@ -57,6 +48,7 @@ firebase.initializeApp({
   imports: [
     BrowserModule,
     FormsModule,
+    ShoppingListModule,
     RecipesModule,
     AppRoutingModule,
     HttpModule,
