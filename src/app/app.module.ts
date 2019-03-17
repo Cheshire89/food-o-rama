@@ -30,6 +30,7 @@ import {
 
 import { RecipesModule } from './recipes/recipes.module';
 import { ShoppingListModule } from './shopping-list/shopping-list.module';
+import { SharedModule } from './shared/shared.module';
 
 
 firebase.initializeApp({
@@ -48,11 +49,12 @@ firebase.initializeApp({
   imports: [
     BrowserModule,
     FormsModule,
-    ShoppingListModule,
-    RecipesModule,
     AppRoutingModule,
     HttpModule,
-    NgbModule
+    NgbModule,
+    ShoppingListModule,
+    RecipesModule,
+    SharedModule
   ],
   providers: [ShoppingListService, RecipeService, DataStorageService, AuthService, AuthGuardService],
   entryComponents: [SignupContent, SigninContent],
