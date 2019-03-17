@@ -31,7 +31,7 @@ export class AuthModalComponent implements OnInit {
     .then(
       (response) => {
         if (response['success']) {
-          console.log('response', response);
+          // console.log('response', response);
         }
       }
     );
