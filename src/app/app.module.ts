@@ -36,13 +36,15 @@ import {
   DataStorageService
 } from './shared';
 
+import { AuthModalComponent } from './auth/auth-modal/auth-modal.component';
+
 import {
-  AuthModalComponent,
   SignupContent,
   SigninContent,
   AuthService,
   AuthGuardService
 } from './auth';
+
 
 firebase.initializeApp({
   apiKey: environment.auth_key,
