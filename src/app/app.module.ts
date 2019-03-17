@@ -37,11 +37,12 @@ import {
 } from './shared';
 
 import {
+  AuthModalComponent,
   SignupContent,
   SigninContent,
-  AuthService
+  AuthService,
+  AuthGuardService
 } from './auth';
-import { AuthModalComponent } from './auth/auth-modal/auth-modal.component';
 
 firebase.initializeApp({
   apiKey: environment.auth_key,
@@ -72,7 +73,7 @@ firebase.initializeApp({
     HttpModule,
     NgbModule
   ],
-  providers: [ShoppingListService, RecipeService, DataStorageService, AuthService],
+  providers: [ShoppingListService, RecipeService, DataStorageService, AuthService, AuthGuardService],
   entryComponents: [SignupContent, SigninContent],
   bootstrap: [AppComponent]
 })

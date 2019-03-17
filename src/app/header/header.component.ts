@@ -10,31 +10,17 @@ import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit, OnDestroy{
-  authSubscription: Subscription;
-  userSignedIn: boolean;
-
+export class HeaderComponent implements OnInit{
   constructor(
     private dataStorage: DataStorageService,
     private authService: AuthService,
     private dropdownConfig: NgbDropdownConfig
   ) {
-    this.userSignedIn = false;
     this.dropdownConfig.placement = 'bottom-right';
   }
 
   ngOnInit() {
     this.onGetRecipes();
-    this.authSubscription = this.authService.authChanged
-      .subscribe(
-        (userSignedIn: boolean) => {
-          this.userSignedIn = userSignedIn
-        }
-      );
-  }
-
-  ngOnDestroy() {
-    this.authSubscription.unsubscribe();
   }
 
   onSaveRecipes(){
@@ -43,7 +29,12 @@ export class HeaderComponent implements OnInit, OnDestroy{
         (response: Response) => console.log(response)
       );
   }
+
   onGetRecipes(){
     this.dataStorage.getRecipes();
+  }
+
+  onLogout(){
+    this.authService.logout();
   }
 }
