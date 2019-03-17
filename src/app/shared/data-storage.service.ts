@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
-import { RecipeService } from '../recipes';
+import { RecipeService } from '../recipes/recipes.service';
 import { environment } from '../../environments/environment';
 import { Recipe } from './recipe.model';
 import { AuthService } from '../auth';

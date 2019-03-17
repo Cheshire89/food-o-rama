@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../../shared/recipe.model';
-import { RecipeService } from '../recipe.service';
+import { RecipeService } from '../recipes.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 
