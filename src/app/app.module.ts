@@ -3,7 +3,7 @@ import { environment } from '../environments/environment';
 // Angular Dependencies
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, OnInit } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 // Third Party
@@ -16,34 +16,15 @@ import { AppRoutingModule } from './app-router.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 
-import {
-  RecipesComponent,
-  RecipeListComponent,
-  RecipeDetailComponent,
-  RecipeItemComponent,
-  RecipeStartComponent,
-  RecipeEditComponent,
-  RecipeService
-} from './recipes';
+import { RecipesModule } from './recipes/recipes.module';
+import { ShoppingListModule } from './shopping-list/shopping-list.module';
+import { SharedModule } from './shared/shared.module';
+import { AuthModule } from './auth/auth.module';
 
-import {
-  ShoppingListComponent,
-  ShoppingEditComponent,
-  ShoppingListService
-} from './shopping-list';
-
-import {
-  DataStorageService
-} from './shared';
-
-import { AuthModalComponent } from './auth/auth-modal/auth-modal.component';
-
-import {
-  SignupContent,
-  SigninContent,
-  AuthService,
-  AuthGuardService
-} from './auth';
+import { RecipeService } from './recipes/recipes.service';
+import { ShoppingListService } from './shopping-list/shopping-list.service';
+import { AuthService, AuthGuardService } from './auth';
+import { DataStorageService } from './shared';
 
 
 firebase.initializeApp({
@@ -55,28 +36,27 @@ firebase.initializeApp({
   declarations: [
     AppComponent,
     HeaderComponent,
-    RecipesComponent,
-    RecipeListComponent,
-    RecipeDetailComponent,
-    RecipeItemComponent,
-    ShoppingListComponent,
-    ShoppingEditComponent,
-    RecipeStartComponent,
-    RecipeEditComponent,
-    SignupContent,
-    SigninContent,
-    AuthModalComponent,
   ],
   imports: [
+    // 3rd party modules
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule,
     AppRoutingModule,
     HttpModule,
-    NgbModule
+    NgbModule,
+    // app modules
+    AuthModule,
+    ShoppingListModule,
+    RecipesModule,
+    SharedModule
   ],
-  providers: [ShoppingListService, RecipeService, DataStorageService, AuthService, AuthGuardService],
-  entryComponents: [SignupContent, SigninContent],
+  providers: [
+    ShoppingListService,
+    RecipeService,
+    DataStorageService,
+    AuthService,
+    AuthGuardService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule implements OnInit {
