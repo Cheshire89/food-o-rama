@@ -23,12 +23,9 @@ import { AuthModule } from './auth/auth.module';
 
 import { RecipeService } from './recipes/recipes.service';
 import { ShoppingListService } from './shopping-list/shopping-list.service';
+import { AuthService, AuthGuardService } from './auth';
 import { DataStorageService } from './shared';
 
-import {
-  AuthService,
-  AuthGuardService
-} from './auth';
 
 firebase.initializeApp({
   apiKey: environment.auth_key,
@@ -41,17 +38,25 @@ firebase.initializeApp({
     HeaderComponent,
   ],
   imports: [
+    // 3rd party modules
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     HttpModule,
     NgbModule,
+    // app modules
     AuthModule,
     ShoppingListModule,
     RecipesModule,
     SharedModule
   ],
-  providers: [ShoppingListService, RecipeService, DataStorageService, AuthService, AuthGuardService],
+  providers: [
+    ShoppingListService,
+    RecipeService,
+    DataStorageService,
+    AuthService,
+    AuthGuardService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule implements OnInit {
