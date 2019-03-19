@@ -1,11 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { SigninContent, SignupContent } from '../';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { SigninContent } from '../signin/signin.component';
+import { SignupContent } from '../signup/signup.component';
 
 
 @Component({
   selector: 'app-auth-modal',
-  template: '<span (click)="open()"> {{ modalName | titlecase }} </span>',
+  template: '<div class="pad-tb-4" (click)="open()"> {{ modalName | titlecase }} </div>',
   styleUrls: ['./auth-modal.component.scss']
 })
 export class AuthModalComponent implements OnInit {

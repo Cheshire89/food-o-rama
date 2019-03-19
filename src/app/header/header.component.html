@@ -42,10 +42,10 @@
             <div ngbDropdownMenu>
 
               <ng-template [ngIf]="!authService.isAuthenticated()">
-                <button ngbDropdownItem>
+                <button class="pad-tb-0" ngbDropdownItem>
                   <app-auth-modal modalName="signup"></app-auth-modal>
                 </button>
-                <button ngbDropdownItem>
+                <button class="pad-tb-0" ngbDropdownItem>
                   <app-auth-modal modalName="signin"></app-auth-modal>
                 </button>
               </ng-template>

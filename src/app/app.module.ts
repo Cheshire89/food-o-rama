@@ -16,22 +16,19 @@ import { AppRoutingModule } from './app-router.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 
+import { RecipesModule } from './recipes/recipes.module';
+import { ShoppingListModule } from './shopping-list/shopping-list.module';
+import { SharedModule } from './shared/shared.module';
+import { AuthModule } from './auth/auth.module';
+
 import { RecipeService } from './recipes/recipes.service';
 import { ShoppingListService } from './shopping-list/shopping-list.service';
 import { DataStorageService } from './shared';
 
-import { AuthModalComponent } from './auth/auth-modal/auth-modal.component';
 import {
-  SignupContent,
-  SigninContent,
   AuthService,
   AuthGuardService
 } from './auth';
-
-import { RecipesModule } from './recipes/recipes.module';
-import { ShoppingListModule } from './shopping-list/shopping-list.module';
-import { SharedModule } from './shared/shared.module';
-
 
 firebase.initializeApp({
   apiKey: environment.auth_key,
@@ -42,9 +39,6 @@ firebase.initializeApp({
   declarations: [
     AppComponent,
     HeaderComponent,
-    SignupContent,
-    SigninContent,
-    AuthModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,12 +46,12 @@ firebase.initializeApp({
     AppRoutingModule,
     HttpModule,
     NgbModule,
+    AuthModule,
     ShoppingListModule,
     RecipesModule,
     SharedModule
   ],
   providers: [ShoppingListService, RecipeService, DataStorageService, AuthService, AuthGuardService],
-  entryComponents: [SignupContent, SigninContent],
   bootstrap: [AppComponent]
 })
 export class AppModule implements OnInit {
