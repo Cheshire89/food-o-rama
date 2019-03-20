@@ -16,8 +16,6 @@ import { AppRoutingModule } from './app-router.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 
-import { RecipesModule } from './recipes/recipes.module';
-import { ShoppingListModule } from './shopping-list/shopping-list.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
 
@@ -25,6 +23,7 @@ import { RecipeService } from './recipes/recipes.service';
 import { ShoppingListService } from './shopping-list/shopping-list.service';
 import { AuthService, AuthGuardService } from './auth';
 import { DataStorageService } from './shared';
+import { HomeComponent } from './home/home.component';
 
 
 firebase.initializeApp({
@@ -36,6 +35,7 @@ firebase.initializeApp({
   declarations: [
     AppComponent,
     HeaderComponent,
+    HomeComponent,
   ],
   imports: [
     // 3rd party modules
@@ -46,8 +46,6 @@ firebase.initializeApp({
     NgbModule,
     // app modules
     AuthModule,
-    ShoppingListModule,
-    RecipesModule,
     SharedModule
   ],
   providers: [
