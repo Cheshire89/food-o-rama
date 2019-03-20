@@ -14,7 +14,6 @@ import 'firebase/auth';
 import { AppRoutingModule } from './app-router.module';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
 
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
@@ -23,7 +22,7 @@ import { RecipeService } from './recipes/recipes.service';
 import { ShoppingListService } from './shopping-list/shopping-list.service';
 import { AuthService, AuthGuardService } from './auth';
 import { DataStorageService } from './shared';
-import { HomeComponent } from './home/home.component';
+import { CoreModule } from './core/core.module';
 
 
 firebase.initializeApp({
@@ -33,9 +32,7 @@ firebase.initializeApp({
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HeaderComponent,
-    HomeComponent,
+    AppComponent
   ],
   imports: [
     // 3rd party modules
@@ -46,14 +43,8 @@ firebase.initializeApp({
     NgbModule,
     // app modules
     AuthModule,
-    SharedModule
-  ],
-  providers: [
-    ShoppingListService,
-    RecipeService,
-    DataStorageService,
-    AuthService,
-    AuthGuardService
+    SharedModule,
+    CoreModule
   ],
   bootstrap: [AppComponent]
 })

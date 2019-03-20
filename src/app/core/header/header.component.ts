@@ -1,9 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Response } from '@angular/http';
-import { DataStorageService } from '../shared/data-storage.service';
-import { AuthService } from '../auth';
-import { Subscription } from 'rxjs';
 import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from 'src/app/auth';
+import { DataStorageService } from 'src/app/shared';
 
 @Component({
   selector: 'app-header',
