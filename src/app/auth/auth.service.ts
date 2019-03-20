@@ -3,6 +3,7 @@ import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import 'rxjs/add/operator/map';
 import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class AuthService {
   authChanged = new Subject();
   token: string = null;
   currentUser: boolean = null;
-  constructor() {
+  constructor(private router: Router) {
   }
 
   signupUser(email: string, password: string) {
@@ -39,7 +40,10 @@ export class AuthService {
       .then(
         (token: string) => {
           this.token = token;
-          this.authChanged.next(!!this.token.length);
+          if (this.token != null) {
+            this.authChanged.next(!!this.token.length);
+            this.router.navigate(['recipes']);
+          }
         }
       )
   }

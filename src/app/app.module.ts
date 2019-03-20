@@ -17,11 +17,6 @@ import { AppComponent } from './app.component';
 
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
-
-import { RecipeService } from './recipes/recipes.service';
-import { ShoppingListService } from './shopping-list/shopping-list.service';
-import { AuthService, AuthGuardService } from './auth';
-import { DataStorageService } from './shared';
 import { CoreModule } from './core/core.module';
 
 
@@ -40,9 +35,7 @@ firebase.initializeApp({
     FormsModule,
     AppRoutingModule,
     HttpModule,
-    NgbModule,
     // app modules
-    AuthModule,
     SharedModule,
     CoreModule
   ],

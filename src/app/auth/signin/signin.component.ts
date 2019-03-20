@@ -23,7 +23,7 @@ export class SigninContent implements OnInit, OnDestroy {
       .subscribe(
         (userSignedIn: boolean) => {
           if (userSignedIn) {
-            this.modal.close({ success: true});
+            this.modal.close({ success: true });
           }
         }
       );

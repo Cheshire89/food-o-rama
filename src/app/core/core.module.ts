@@ -10,6 +10,8 @@ import { ShoppingListService } from '../shopping-list/shopping-list.service';
 import { RecipeService } from '../recipes/recipes.service';
 import { DataStorageService } from '../shared';
 import { AuthService, AuthGuardService } from '../auth';
+import { AuthModule } from '../auth/auth.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
     declarations: [
@@ -18,7 +20,9 @@ import { AuthService, AuthGuardService } from '../auth';
     ],
     imports: [
         SharedModule,
-        AppRoutingModule
+        AppRoutingModule,
+        AuthModule,
+        NgbModule
     ],
     providers: [
         ShoppingListService,
