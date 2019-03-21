@@ -32,6 +32,8 @@ export class AuthService {
     if (this.isAuthenticated()) {
       firebase.auth().signOut;
       this.token = null;
+      this.authChanged.next(this.token != null);
+      this.router.navigate(['/']);
     }
   }
 

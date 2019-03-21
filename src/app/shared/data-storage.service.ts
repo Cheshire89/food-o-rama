@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
 import { RecipeService } from '../recipes/recipes.service';
 import { environment } from '../../environments/environment';
 import { Recipe } from './recipe.model';
 import { AuthService } from '../auth';
-import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ import { Observable } from 'rxjs';
 export class DataStorageService {
   api_url = environment.api_url;
   constructor(
-    private http: Http,
+    private http: HttpClient,
     private recipeService: RecipeService,
     private authService: AuthService
     ) { }
@@ -28,16 +28,19 @@ export class DataStorageService {
   }
 
   getRecipes() {
-    return this.http.get(this.api_url + 'recipes.json')
-      .map((response: Response) => {
-            const recipes: Recipe[] = response.json();
-            for (let recipe of recipes) {
-              if(!recipe['ingredients']) {
-                recipe.ingredients = [];
+    return this.http.get<Recipe[]>(this.api_url + 'recipes.json')
+      .pipe(
+        map(
+          (recipes) => {
+              for (let recipe of recipes) {
+                if(!recipe['ingredients']) {
+                  recipe.ingredients = [];
+                }
               }
-            }
-            return recipes;
-      })
+              return recipes;
+          }
+        )
+      )
       .subscribe(
         (recipes: Recipe[]) => {
           this.recipeService.setRecipes(recipes);

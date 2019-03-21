@@ -4,8 +4,7 @@ import { environment } from '../environments/environment';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
-
+import { HttpClientModule } from '@angular/common/http';
 // Third Party
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import * as firebase from 'firebase/app';
@@ -34,7 +33,7 @@ firebase.initializeApp({
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpModule,
+    HttpClientModule,
     // app modules
     SharedModule,
     CoreModule
