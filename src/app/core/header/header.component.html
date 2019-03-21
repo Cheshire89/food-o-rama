@@ -19,7 +19,7 @@
         </li>
       </ul>
       <ul class="navbar-nav ml-auto">
-          <ng-template [ngIf]="authService.isAuthenticated()">
+          <ng-template [ngIf]="isAuthenticated">
             <li class="nav-item" ngbDropdown>
               <button class="nav-link btn toggle-alt pad-tb-15" ngbDropdownToggle>
                 <i class="fas fa-database"></i>
@@ -32,16 +32,16 @@
           </ng-template>
           <li class="nav-item" ngbDropdown>
             <button class="nav-link btn toggle-alt pad-tb-15" ngbDropdownToggle>
-              <span *ngIf="!authService.isAuthenticated()">
+              <span *ngIf="!isAuthenticated">
                 <i class="fas fa-user-lock"></i>
               </span>
-              <span *ngIf="authService.isAuthenticated()">
+              <span *ngIf="isAuthenticated">
                 <i class="fas fa-user-cog"></i>
               </span>
             </button>
             <div ngbDropdownMenu>
 
-              <ng-template [ngIf]="!authService.isAuthenticated()">
+              <ng-template [ngIf]="!isAuthenticated">
                 <button class="pad-tb-0" ngbDropdownItem>
                   <app-auth-modal modalName="signup"></app-auth-modal>
                 </button>
@@ -50,7 +50,7 @@
                 </button>
               </ng-template>
 
-              <ng-template [ngIf]="authService.isAuthenticated()">
+              <ng-template [ngIf]="isAuthenticated">
                 <button ngbDropdownItem (click)="onLogout()">
                   <span>Logout</span>
                 </button>

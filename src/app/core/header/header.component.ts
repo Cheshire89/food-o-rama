@@ -18,6 +18,10 @@ export class HeaderComponent implements OnInit{
     this.dropdownConfig.placement = 'bottom-right';
   }
 
+  isAuthenticated() {
+    return this.authService.isAuthenticated()
+  }
+
   ngOnInit() {
     this.onGetRecipes();
   }
