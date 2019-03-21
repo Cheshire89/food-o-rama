@@ -10,6 +10,8 @@ import { DataStorageService } from 'src/app/shared';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit{
+  isAuthenticated: boolean;
+
   constructor(
     private dataStorage: DataStorageService,
     private authService: AuthService,
@@ -18,12 +20,13 @@ export class HeaderComponent implements OnInit{
     this.dropdownConfig.placement = 'bottom-right';
   }
 
-  isAuthenticated() {
-    return this.authService.isAuthenticated()
-  }
-
   ngOnInit() {
     this.onGetRecipes();
+
+    this.authService.authChanged
+    .subscribe((userSignedIn: boolean) => {
+      this.isAuthenticated = userSignedIn;
+    });
   }
 
   onSaveRecipes(){
