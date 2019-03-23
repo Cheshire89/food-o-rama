@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Response } from '@angular/http';
+// import { HttpEvent } from '@angular/common/http';
 import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from 'src/app/auth';
 import { DataStorageService } from 'src/app/shared';
@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit{
   onSaveRecipes(){
     this.dataStorage.storeRecipes()
       .subscribe(
-        (response: Response) => console.log(response)
+        (response) => console.log(response)
       );
   }
 

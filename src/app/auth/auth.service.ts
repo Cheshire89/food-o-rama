@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
-import 'rxjs/add/operator/map';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
 

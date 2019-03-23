@@ -12,6 +12,8 @@ import { DataStorageService } from '../shared';
 import { AuthService, AuthGuardService } from '../auth';
 import { AuthModule } from '../auth/auth.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AuthInterceptor } from '../shared/auth.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
     declarations: [
@@ -29,7 +31,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         RecipeService,
         DataStorageService,
         AuthService,
-        AuthGuardService
+        AuthGuardService,
+        {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
     ],
     exports: [
         AppRoutingModule,
