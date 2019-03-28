@@ -15,8 +15,9 @@ import { AppRoutingModule } from './app-router.module';
 import { AppComponent } from './app.component';
 
 import { SharedModule } from './shared/shared.module';
-import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
+import { StoreModule } from '@ngrx/store';
+import { shoppingListReducer } from './shopping-list/ngrx/shopping-list.reducers';
 
 
 firebase.initializeApp({
@@ -34,6 +35,9 @@ firebase.initializeApp({
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
+    StoreModule.forRoot({
+      shoppingList: shoppingListReducer
+    }),
     // app modules
     SharedModule,
     CoreModule

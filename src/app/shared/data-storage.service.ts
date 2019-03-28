@@ -4,7 +4,7 @@ import { environment } from '../../environments/environment';
 import { Recipe } from './recipe.model';
 import { AuthService } from '../auth';
 import { Observable } from 'rxjs';
-import { HttpClient, HttpParams, HttpRequest } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 @Injectable({
