@@ -4,8 +4,8 @@ import { Store } from '@ngrx/store';
 import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Recipe } from '../../shared/recipe.model';
 import { RecipeService } from '../recipes.service';
+import * as fromApp from '../../ngrx/app.reducers';
 import * as ShoppingListActions from '../../shopping-list/ngrx/shopping-list.actions';
-import * as fromShoppingList from '../../shopping-list/ngrx/shopping-list.reducers';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -21,7 +21,7 @@ export class RecipeDetailComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private dropdownConfig: NgbDropdownConfig,
-    private store: Store<fromShoppingList.AppState>
+    private store: Store<fromApp.AppState>
   ) {
     this.dropdownConfig.placement = 'top-right';
    }
