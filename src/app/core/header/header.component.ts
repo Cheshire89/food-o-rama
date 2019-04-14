@@ -3,6 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from 'src/app/auth';
 import { DataStorageService } from 'src/app/shared';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import * as fromApp from '../../ngrx/app.reducers';
+import * as fromAuth from '../../auth/ngrx/auth.reducers';
 
 @Component({
   selector: 'app-header',
@@ -10,23 +14,20 @@ import { DataStorageService } from 'src/app/shared';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit{
-  isAuthenticated: boolean;
+  authState: Observable<fromAuth.State>;
 
   constructor(
     private dataStorage: DataStorageService,
     private authService: AuthService,
-    private dropdownConfig: NgbDropdownConfig
+    private dropdownConfig: NgbDropdownConfig,
+    private store: Store<fromApp.AppState>
   ) {
     this.dropdownConfig.placement = 'bottom-right';
   }
 
   ngOnInit() {
     this.onGetRecipes();
-
-    this.authService.authChanged
-    .subscribe((userSignedIn: boolean) => {
-      this.isAuthenticated = userSignedIn;
-    });
+    this.authState = this.store.select('auth');
   }
 
   onSaveRecipes(){

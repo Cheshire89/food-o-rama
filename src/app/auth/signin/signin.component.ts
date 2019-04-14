@@ -3,6 +3,9 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Subscription } from 'rxjs';
+import * as fromApp from '../../ngrx/app.reducers';
+import * as fromAuth from '../ngrx/auth.reducers';
+import { Store } from '@ngrx/store';
 
 @Component({
   templateUrl: './signin.component.html',
@@ -10,23 +13,22 @@ import { Subscription } from 'rxjs';
 })
 
 export class SigninContent implements OnInit, OnDestroy {
-  authSubscription: Subscription
+  authSubscription: Subscription;
+
   @Input() name;
 
   constructor(
     public modal: NgbActiveModal,
-    private authService: AuthService
+    private authService: AuthService,
+    private store: Store<fromApp.AppState>
   ) { }
 
   ngOnInit() {
-    this.authSubscription = this.authService.authChanged
-      .subscribe(
-        (userSignedIn: boolean) => {
-          if (userSignedIn) {
-            this.modal.close({ success: true });
-          }
-        }
-      );
+    this.authSubscription = this.store.select('auth')
+    .subscribe((authState: fromAuth.State) => {
+      if(authState.authenticated)
+      this.modal.close({ success: true });
+    });
   }
 
   ngOnDestroy() {

@@ -15,8 +15,9 @@ import { AppRoutingModule } from './app-router.module';
 import { AppComponent } from './app.component';
 
 import { SharedModule } from './shared/shared.module';
-import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './ngrx/app.reducers';
 
 
 firebase.initializeApp({
@@ -36,7 +37,8 @@ firebase.initializeApp({
     HttpClientModule,
     // app modules
     SharedModule,
-    CoreModule
+    CoreModule,
+    StoreModule.forRoot(reducers),
   ],
   bootstrap: [AppComponent]
 })

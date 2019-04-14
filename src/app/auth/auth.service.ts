@@ -1,56 +1,50 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
-import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import * as fromApp from  '../ngrx/app.reducers';
+import * as AuthActions from './ngrx/auth.actions';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  authChanged = new Subject();
-  token: string = null;
-  currentUser: boolean = null;
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private store: Store<fromApp.AppState>
+    ) {
   }
 
   signupUser(email: string, password: string) {
-    return firebase.auth().createUserWithEmailAndPassword(email, password);
+    return firebase.auth().createUserWithEmailAndPassword(email, password)
+    .then(() => {
+      this.store.dispatch(new AuthActions.Signup());
+      firebase.auth().currentUser.getIdToken()
+        .then((token: string) => this.setToken(token));
+    })
+    .catch();
   }
 
   signinUser(email: string, password: string) {
     firebase.auth().signInWithEmailAndPassword(email, password)
-    .then(
-      () => {
-        this.getToken();
+    .then(() => {
+        this.store.dispatch(new AuthActions.Login());
+        firebase.auth().currentUser.getIdToken()
+          .then((token: string) => this.setToken(token));
       }
     );
   }
 
+  setToken(token){
+    this.router.navigate(['recipes']);
+    this.store.dispatch(new AuthActions.SetToken(token));
+  }
+
   logout(){
-    if (this.isAuthenticated()) {
-      firebase.auth().signOut;
-      this.token = null;
-      this.authChanged.next(this.token != null);
-      this.router.navigate(['/']);
-    }
-  }
-
-  getToken(){
-    firebase.auth().currentUser.getIdToken()
-      .then(
-        (token: string) => {
-          this.token = token;
-          if (this.token != null) {
-            this.authChanged.next(!!this.token.length);
-            this.router.navigate(['recipes']);
-          }
-        }
-      )
-  }
-
-  isAuthenticated() {
-    return this.token != null;
+    firebase.auth().signOut;
+    this.store.dispatch(new AuthActions.Logout());
+    this.router.navigate(['/']);
   }
 
 }
