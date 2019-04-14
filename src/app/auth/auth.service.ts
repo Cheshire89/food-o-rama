@@ -18,8 +18,10 @@ export class AuthService {
 
   signupUser(email: string, password: string) {
     return firebase.auth().createUserWithEmailAndPassword(email, password)
-    .then(user => {
+    .then(() => {
       this.store.dispatch(new AuthActions.Signup());
+      firebase.auth().currentUser.getIdToken()
+        .then((token: string) => this.setToken(token));
     })
     .catch();
   }
@@ -29,9 +31,14 @@ export class AuthService {
     .then(() => {
         this.store.dispatch(new AuthActions.Login());
         firebase.auth().currentUser.getIdToken()
-          .then((token: string) => this.store.dispatch(new AuthActions.SetToken(token)));
+          .then((token: string) => this.setToken(token));
       }
     );
+  }
+
+  setToken(token){
+    this.router.navigate(['recipes']);
+    this.store.dispatch(new AuthActions.SetToken(token));
   }
 
   logout(){

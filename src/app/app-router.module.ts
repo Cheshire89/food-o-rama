@@ -8,8 +8,6 @@ const appRoutes: Routes = [
     { path: '', component: HomeComponent },
 ];
 
-// { preloadingStrategy: PreloadAllModules}
-
 @NgModule({
     imports: [
         RouterModule.forRoot(appRoutes),
