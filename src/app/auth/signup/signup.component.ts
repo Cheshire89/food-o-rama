@@ -6,6 +6,7 @@ import * as fromApp from '../../ngrx/app.reducers';
 import * as fromAuth from '../ngrx/auth.reducers';
 import * as AuthActions from '../ngrx/auth.actions';
 import { Store } from '@ngrx/store';
+import { Router } from '@angular/router';
 
 @Component({
   templateUrl: './signup.component.html',
@@ -17,15 +18,18 @@ export class SignupContent implements OnInit, OnDestroy{
   @Input() name;
 
   constructor(
-    public modal: NgbActiveModal,
+    private modal: NgbActiveModal,
+    private router: Router,
     private store: Store<fromApp.AppState>
   ) { }
 
   ngOnInit() {
     this.authSubscription = this.store.select('auth')
     .subscribe((authState: fromAuth.State) => {
-      if(authState.authenticated)
-      this.modal.close({ success: true });
+      if(authState.authenticated) {
+        this.router.navigate(['recipes']);
+        this.modal.close({ success: true });
+      }
     });
   }
 

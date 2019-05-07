@@ -7,13 +7,12 @@ import * as firebase from 'firebase';
 
 @Injectable()
 export class AuthEffects {
-    @Effect(
-        /*
-            \/  used if there is not event
-                dispatched at the end of effect execution
-            {dispatch: false}
-        */
-    )
+    /*
+        \/  used if there is not event
+            dispatched at the end of effect execution
+        {dispatch: false}
+    */
+    @Effect()
     authSignup = this.actions$.pipe(
         ofType(AuthActions.TRY_SIGNUP),
         map((action: AuthActions.TrySignup) => {
@@ -38,6 +37,32 @@ export class AuthEffects {
             ]
         })
     );
+
+    @Effect()
+    authSignin = this.actions$.pipe(
+        ofType(AuthActions.TRY_LOGIN),
+        map((action: AuthActions.TryLogin) => {
+            return action.payload
+        }),
+        switchMap((authData: {email: string, password: string}) => {
+            return from(firebase.auth().signInWithEmailAndPassword(authData.email, authData.password))
+        }),
+        switchMap(() => {
+            return from(firebase.auth().currentUser.getIdToken());
+        }),
+        mergeMap((token: string) => {
+            return [
+                {
+                    type: AuthActions.LOGIN
+
+                },
+                {
+                    type: AuthActions.SET_TOKEN,
+                    payload: token
+                },
+            ]
+        })
+    )
 
     constructor(
         private actions$: Actions
