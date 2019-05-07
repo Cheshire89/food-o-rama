@@ -3,7 +3,7 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angul
 import { Store } from '@ngrx/store';
 import * as fromApp from '../ngrx/app.reducers';
 import * as fromAuth from './ngrx/auth.reducers';
-import { map } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -15,6 +15,7 @@ export class AuthGuardService implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     return this.store.select('auth').pipe(
+      take(1),
       map((authState: fromAuth.State) => {
         return authState.authenticated;
       })
