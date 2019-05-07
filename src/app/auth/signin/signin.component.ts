@@ -27,7 +27,6 @@ export class SigninContent implements OnInit, OnDestroy {
     this.authSubscription = this.store.select('auth')
     .subscribe((authState: fromAuth.State) => {
       if(authState.authenticated) {
-        this.router.navigate(['recipes']);
         this.modal.close({ success: true });
       }
     });
