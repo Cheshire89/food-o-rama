@@ -1,10 +1,10 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
-import { AuthService } from '../auth.service';
 import { Subscription } from 'rxjs';
 import * as fromApp from '../../ngrx/app.reducers';
 import * as fromAuth from '../ngrx/auth.reducers';
+import * as AuthActions from '../ngrx/auth.actions';
 import { Store } from '@ngrx/store';
 
 @Component({
@@ -18,7 +18,6 @@ export class SignupContent implements OnInit, OnDestroy{
 
   constructor(
     public modal: NgbActiveModal,
-    private authService: AuthService,
     private store: Store<fromApp.AppState>
   ) { }
 
@@ -41,10 +40,6 @@ export class SignupContent implements OnInit, OnDestroy{
   onSignup(form: NgForm) {
     const email = form.value.email;
     const password = form.value.password;
-    this.authService.signupUser(email, password)
-    .then(response => {
-      this.modal.close({ success: true, data: response });
-    })
-    .catch( error => console.error('signupUser', error));
+    this.store.dispatch(new AuthActions.TrySignup({ email: email, password: password }));
   }
 }

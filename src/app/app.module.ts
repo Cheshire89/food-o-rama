@@ -18,6 +18,8 @@ import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './ngrx/app.reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './auth/ngrx/auth.effects';
 
 
 firebase.initializeApp({
@@ -39,6 +41,7 @@ firebase.initializeApp({
     SharedModule,
     CoreModule,
     StoreModule.forRoot(reducers),
+    EffectsModule.forRoot([AuthEffects])
   ],
   bootstrap: [AppComponent]
 })
