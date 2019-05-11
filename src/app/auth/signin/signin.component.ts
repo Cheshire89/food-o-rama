@@ -6,7 +6,6 @@ import * as fromApp from '../../ngrx/app.reducers';
 import * as fromAuth from '../ngrx/auth.reducers';
 import * as AuthActions from '../ngrx/auth.actions';
 import { Store } from '@ngrx/store';
-import { Router } from '@angular/router';
 
 @Component({
   templateUrl: './signin.component.html',
@@ -19,7 +18,6 @@ export class SigninContent implements OnInit, OnDestroy {
 
   constructor(
     private modal: NgbActiveModal,
-    private router: Router,
     private store: Store<fromApp.AppState>
   ) { }
 
