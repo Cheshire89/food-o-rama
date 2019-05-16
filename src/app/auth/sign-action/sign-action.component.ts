@@ -25,7 +25,6 @@ export class SignActionComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this);
     this.prefix = this.modalHeader.split('sign')[1];
     this.authSubscription = this.store.select('auth')
     .subscribe((authState: fromAuth.State) => {

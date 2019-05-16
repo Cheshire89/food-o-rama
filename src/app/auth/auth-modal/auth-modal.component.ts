@@ -45,7 +45,6 @@ export class AuthModalComponent implements OnInit {
   }
 
   open() {
-    console.log(this.content);
     const modalInstance = this.modalService.open(this.content, { centered: true, windowClass: 'modal-holder' });
     modalInstance.componentInstance.modalHeader = this.modalName;
     modalInstance.componentInstance.onSubmit = this.modalName === 'signin' ? this.onSignin : this.onSignup;
