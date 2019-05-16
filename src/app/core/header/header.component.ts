@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-// import { HttpEvent } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
-import { AuthService } from 'src/app/auth';
 import { DataStorageService } from 'src/app/shared';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as fromApp from '../../ngrx/app.reducers';
 import * as fromAuth from '../../auth/ngrx/auth.reducers';
+import * as AuthActions from '../../auth/ngrx/auth.actions';
 
 @Component({
   selector: 'app-header',
@@ -18,8 +18,8 @@ export class HeaderComponent implements OnInit{
 
   constructor(
     private dataStorage: DataStorageService,
-    private authService: AuthService,
     private dropdownConfig: NgbDropdownConfig,
+    private router: Router,
     private store: Store<fromApp.AppState>
   ) {
     this.dropdownConfig.placement = 'bottom-right';
@@ -42,6 +42,7 @@ export class HeaderComponent implements OnInit{
   }
 
   onLogout(){
-    this.authService.logout();
+    this.store.dispatch(new AuthActions.Logout());
+    this.router.navigate(['/']);
   }
 }

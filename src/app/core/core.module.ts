@@ -8,7 +8,7 @@ import { AppRoutingModule } from '../app-router.module';
 // services
 import { RecipeService } from '../recipes/recipes.service';
 import { DataStorageService } from '../shared';
-import { AuthService, AuthGuardService } from '../auth';
+import { AuthGuardService } from '../auth';
 import { AuthModule } from '../auth/auth.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthInterceptor } from '../shared/auth.interceptor';
@@ -30,7 +30,6 @@ import { ShoppingListModule } from '../shopping-list/shopping-list.module';
     providers: [
         RecipeService,
         DataStorageService,
-        AuthService,
         AuthGuardService,
         {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
     ],
