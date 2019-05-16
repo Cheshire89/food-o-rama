@@ -7,21 +7,26 @@ import * as fromAuth from '../ngrx/auth.reducers';
 import * as AuthActions from '../ngrx/auth.actions';
 import { Store } from '@ngrx/store';
 
-@Component({
-  templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.scss']
-})
 
-export class SigninContent implements OnInit, OnDestroy {
+@Component({
+  selector: 'app-sign-action',
+  templateUrl: './sign-action.component.html',
+  styleUrls: ['./sign-action.component.scss']
+})
+export class SignActionComponent implements OnInit {
+  modalHeader: string;
+  prefix: string;
   authSubscription: Subscription;
-  @Input() name;
 
   constructor(
     private modal: NgbActiveModal,
     private store: Store<fromApp.AppState>
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
+    console.log(this);
+    this.prefix = this.modalHeader.split('sign')[1];
     this.authSubscription = this.store.select('auth')
     .subscribe((authState: fromAuth.State) => {
       if(authState.authenticated) {
@@ -30,17 +35,8 @@ export class SigninContent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy() {
-    this.authSubscription.unsubscribe();
-  }
-
   close() {
     this.modal.close({ success: false })
   }
 
-  onSignin(form: NgForm) {
-    const email = form.value.email;
-    const password = form.value.password;
-    this.store.dispatch(new AuthActions.TryLogin({ email: email, password: password }));
-  }
 }

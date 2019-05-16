@@ -8,11 +8,11 @@ import * as firebase from 'firebase';
 
 @Injectable()
 export class AuthEffects {
-    /*
-        \/  used if there is not event
-            dispatched at the end of effect execution
-        {dispatch: false}
-    */
+    constructor(
+        private actions$: Actions,
+        private router: Router
+    ) {}
+
     @Effect()
     authSignup = this.actions$.pipe(
         ofType(AuthActions.TRY_SIGNUP),
@@ -67,6 +67,12 @@ export class AuthEffects {
         })
     )
 
+    /*
+        \/  used if there is not event
+            dispatched at the end of effect execution
+        {dispatch: false}
+    */
+
     @Effect({ dispatch: false })
     authLogout = this.actions$.pipe(
         ofType(AuthActions.LOGOUT),
@@ -74,11 +80,4 @@ export class AuthEffects {
             this.router.navigate(['/']);
         })
     )
-
-    constructor(
-        private actions$: Actions,
-        private router: Router
-    ) {
-
-    }
 }

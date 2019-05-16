@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { SigninContent, SignupContent } from '../';
+import { SignActionComponent } from '../';
 import * as fromApp from '../../ngrx/app.reducers';
 import * as fromAuth from '../ngrx/auth.reducers';
 import * as AuthActions from '../ngrx/auth.actions';
@@ -15,21 +15,21 @@ import { NgForm } from '@angular/forms';
 })
 export class AuthModalComponent implements OnInit {
   @Input() modalName;
-  content: any;
+  content = SignActionComponent;
   constructor(
     private modalService: NgbModal,
     private store: Store<fromApp.AppState>,
   ) { }
 
   ngOnInit() {
-    switch(this.modalName) {
-      case 'signin':
-        this.content = SigninContent
-        break;
-      case 'signup':
-        this.content = SignupContent
-        break;
-    }
+    // switch(this.modalName) {
+    //   case 'signin':
+    //     this.content = SigninContent
+    //     break;
+    //   case 'signup':
+    //     this.content = SignupContent
+    //     break;
+    // }
   }
 
   onSignin(form: NgForm) {
@@ -45,8 +45,9 @@ export class AuthModalComponent implements OnInit {
   }
 
   open() {
+    console.log(this.content);
     const modalInstance = this.modalService.open(this.content, { centered: true, windowClass: 'modal-holder' });
     modalInstance.componentInstance.modalHeader = this.modalName;
-    modalInstance.componentInstance.onClose = this.modalName === 'signin' ? this.onSignin : this.onSignup;
+    modalInstance.componentInstance.onSubmit = this.modalName === 'signin' ? this.onSignin : this.onSignup;
   }
 }
