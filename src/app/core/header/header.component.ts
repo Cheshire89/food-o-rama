@@ -8,6 +8,8 @@ import * as fromApp from '../../ngrx/app.reducers';
 import * as fromAuth from '../../auth/ngrx/auth.reducers';
 import * as AuthActions from '../../auth/ngrx/auth.actions';
 
+import * as RecipeActions from '../../recipes/ngrx/recipe.actions';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -31,14 +33,11 @@ export class HeaderComponent implements OnInit{
   }
 
   onSaveRecipes(){
-    this.dataStorage.storeRecipes()
-      .subscribe(
-        (response) => console.log(response)
-      );
+    this.store.dispatch(new RecipeActions.StoreRecipes());
   }
 
   onGetRecipes(){
-    this.dataStorage.getRecipes();
+    this.store.dispatch(new RecipeActions.GetRecipes());
   }
 
   onLogout(){

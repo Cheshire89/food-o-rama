@@ -1,12 +1,13 @@
 import { Recipe } from "src/app/shared/recipe.model";
 import * as RecipeActions from "./recipe.actions";
+import * as fromApp from '../../ngrx/app.reducers';
+
+export interface FeatureState extends fromApp.AppState{
+    recipes: State;
+}
 
 export interface State {
     recipes: Recipe[];
-}
-
-export interface FeatureState{
-    recipes: State;
 }
 
 const initialState: State = {
