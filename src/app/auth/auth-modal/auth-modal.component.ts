@@ -1,11 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SignActionComponent } from '../';
-import * as fromApp from '../../ngrx/app.reducers';
-import * as fromAuth from '../ngrx/auth.reducers';
-import * as AuthActions from '../ngrx/auth.actions';
-import { Store } from '@ngrx/store';
 import { NgForm } from '@angular/forms';
+
+import { Store } from '@ngrx/store';
+import * as fromApp from '../../ngrx/app.reducers';
+import * as AuthActions from '../ngrx/auth.actions';
 
 
 @Component({
@@ -13,24 +13,13 @@ import { NgForm } from '@angular/forms';
   template: '<div class="pad-tb-4" (click)="open()"> {{ modalName | titlecase }} </div>',
   styleUrls: ['./auth-modal.component.scss']
 })
-export class AuthModalComponent implements OnInit {
+export class AuthModalComponent {
   @Input() modalName;
   content = SignActionComponent;
   constructor(
     private modalService: NgbModal,
     private store: Store<fromApp.AppState>,
   ) { }
-
-  ngOnInit() {
-    // switch(this.modalName) {
-    //   case 'signin':
-    //     this.content = SigninContent
-    //     break;
-    //   case 'signup':
-    //     this.content = SignupContent
-    //     break;
-    // }
-  }
 
   onSignin(form: NgForm) {
     const email = form.value.email;

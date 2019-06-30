@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
-import { DataStorageService } from 'src/app/shared';
 import { Observable } from 'rxjs';
+
 import { Store } from '@ngrx/store';
 import * as fromApp from '../../ngrx/app.reducers';
 import * as fromAuth from '../../auth/ngrx/auth.reducers';
 import * as AuthActions from '../../auth/ngrx/auth.actions';
+import * as RecipeActions from '../../recipes/ngrx/recipe.actions';
 
 @Component({
   selector: 'app-header',
@@ -17,7 +18,6 @@ export class HeaderComponent implements OnInit{
   authState: Observable<fromAuth.State>;
 
   constructor(
-    private dataStorage: DataStorageService,
     private dropdownConfig: NgbDropdownConfig,
     private router: Router,
     private store: Store<fromApp.AppState>
@@ -31,14 +31,11 @@ export class HeaderComponent implements OnInit{
   }
 
   onSaveRecipes(){
-    this.dataStorage.storeRecipes()
-      .subscribe(
-        (response) => console.log(response)
-      );
+    this.store.dispatch(new RecipeActions.StoreRecipes());
   }
 
   onGetRecipes(){
-    this.dataStorage.getRecipes();
+    this.store.dispatch(new RecipeActions.GetRecipes());
   }
 
   onLogout(){

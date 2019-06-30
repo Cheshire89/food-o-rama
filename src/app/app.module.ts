@@ -7,12 +7,13 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import * as firebase from 'firebase/app';
+import 'firebase/auth';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import 'firebase/auth';
+
 
 import { AppRoutingModule } from './app-router.module';
 

@@ -1,10 +1,8 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import * as fromApp from '../../ngrx/app.reducers';
 import * as fromAuth from '../ngrx/auth.reducers';
-import * as AuthActions from '../ngrx/auth.actions';
 import { Store } from '@ngrx/store';
 
 
@@ -17,12 +15,13 @@ export class SignActionComponent implements OnInit {
   modalHeader: string;
   prefix: string;
   authSubscription: Subscription;
+  // bound to controller from auth-modal.component
+  onSubmit;
 
   constructor(
     private modal: NgbActiveModal,
     private store: Store<fromApp.AppState>
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.prefix = this.modalHeader.split('sign')[1];
@@ -37,5 +36,6 @@ export class SignActionComponent implements OnInit {
   close() {
     this.modal.close({ success: false })
   }
+
 
 }
