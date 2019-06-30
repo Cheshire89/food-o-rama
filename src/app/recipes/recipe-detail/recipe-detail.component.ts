@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
-import { RecipeService } from '../recipes.service';
+
+import { Store } from '@ngrx/store';
 import * as ShoppingListActions from '../../shopping-list/ngrx/shopping-list.actions';
 import * as fromRecipe from '../ngrx/recipe.reducers';
 import * as RecipeActions from '../ngrx/recipe.actions';
@@ -20,7 +20,6 @@ export class RecipeDetailComponent implements OnInit {
   id: number;
 
   constructor(
-    private recipeService: RecipeService,
     private router: Router,
     private route: ActivatedRoute,
     private dropdownConfig: NgbDropdownConfig,
