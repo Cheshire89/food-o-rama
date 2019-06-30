@@ -16,14 +16,14 @@
   },
   "homepage": "http://food-o-rama.s3-website.us-east-2.amazonaws.com/",
   "dependencies": {
-    "@angular/animations": "^6.0.3",
-    "@angular/common": "^6.0.3",
-    "@angular/compiler": "^6.0.3",
-    "@angular/core": "^6.0.3",
-    "@angular/forms": "^6.0.3",
-    "@angular/platform-browser": "^6.0.3",
-    "@angular/platform-browser-dynamic": "^6.0.3",
-    "@angular/router": "^6.0.3",
+    "@angular/animations": "^8.0.3",
+    "@angular/common": "^8.0.3",
+    "@angular/compiler": "^8.0.3",
+    "@angular/core": "^8.0.3",
+    "@angular/forms": "^8.0.3",
+    "@angular/platform-browser": "^8.0.3",
+    "@angular/platform-browser-dynamic": "^8.0.3",
+    "@angular/router": "^8.0.3",
     "@ng-bootstrap/ng-bootstrap": "^4.1.0",
     "@ngrx/effects": "^7.4.0",
     "@ngrx/router-store": "^7.4.0",
@@ -32,14 +32,14 @@
     "bootstrap": "^4.1.3",
     "core-js": "^2.5.4",
     "firebase": "^5.9.1",
-    "rxjs": "6.0.0",
-    "zone.js": "^0.8.26"
+    "rxjs": "6.5.2",
+    "zone.js": "^0.9.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.13.6",
     "@angular/cli": "^8.0.6",
-    "@angular/compiler-cli": "^6.0.3",
-    "@angular/language-service": "^6.0.3",
+    "@angular/compiler-cli": "^8.0.3",
+    "@angular/language-service": "^8.0.3",
     "@fortawesome/fontawesome-free": "^5.8.1",
     "@types/jasmine": "~2.8.6",
     "@types/jasminewd2": "~2.0.3",
@@ -55,6 +55,6 @@
     "protractor": "^5.4.2",
     "ts-node": "~5.0.1",
     "tslint": "~5.9.1",
-    "typescript": "~2.8.0"
+    "typescript": "~3.4.5"
   }
 }

@@ -12,7 +12,7 @@ import * as ShoppingListActions from '../ngrx/shopping-list.actions';
   styleUrls: ['./shopping-edit.component.scss']
 })
 export class ShoppingEditComponent implements OnInit, OnDestroy {
-  @ViewChild('f') slForm: NgForm;
+  @ViewChild('f', { static: true }) slForm: NgForm;
   config = {
     editMode: false
   }
