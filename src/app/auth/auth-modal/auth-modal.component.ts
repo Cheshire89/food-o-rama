@@ -1,7 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { SigninContent } from '../signin/signin.component';
-import { SignupContent } from '../signup/signup.component';
+import { SignActionComponent } from '../';
+import { NgForm } from '@angular/forms';
+
+import { Store } from '@ngrx/store';
+import * as fromApp from '../../ngrx/app.reducers';
+import * as AuthActions from '../ngrx/auth.actions';
 
 
 @Component({
@@ -9,32 +13,29 @@ import { SignupContent } from '../signup/signup.component';
   template: '<div class="pad-tb-4" (click)="open()"> {{ modalName | titlecase }} </div>',
   styleUrls: ['./auth-modal.component.scss']
 })
-export class AuthModalComponent implements OnInit {
+export class AuthModalComponent {
   @Input() modalName;
-  content: any;
+  content = SignActionComponent;
   constructor(
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private store: Store<fromApp.AppState>,
   ) { }
 
-  ngOnInit() {
-    switch(this.modalName) {
-      case 'signin':
-        this.content = SigninContent
-        break;
-      case 'signup':
-        this.content = SignupContent
-        break;
-    }
+  onSignin(form: NgForm) {
+    const email = form.value.email;
+    const password = form.value.password;
+    this.store.dispatch(new AuthActions.TryLogin({ email: email, password: password }));
+  }
+
+  onSignup(form: NgForm) {
+    const email = form.value.email;
+    const password = form.value.password;
+    this.store.dispatch(new AuthActions.TrySignup({ email: email, password: password }));
   }
 
   open() {
-    this.modalService.open(this.content, { centered: true, windowClass: 'modal-holder' }).result
-    .then(
-      (response) => {
-        if (response['success']) {
-          // console.log('response', response);
-        }
-      }
-    );
+    const modalInstance = this.modalService.open(this.content, { centered: true, windowClass: 'modal-holder' });
+    modalInstance.componentInstance.modalHeader = this.modalName;
+    modalInstance.componentInstance.onSubmit = this.modalName === 'signin' ? this.onSignin : this.onSignup;
   }
 }
