@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit{
     private router: Router,
     private store: Store<fromApp.AppState>
   ) {
-    this.dropdownConfig.placement = 'bottom-right';
+    // this.dropdownConfig.placement = 'left';
   }
 
   ngOnInit() {
