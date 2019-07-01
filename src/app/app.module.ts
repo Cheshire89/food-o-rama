@@ -36,7 +36,7 @@ firebase.initializeApp({
   ],
   imports: [
     // 3rd party modules
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
