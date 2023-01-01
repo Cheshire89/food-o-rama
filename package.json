@@ -16,7 +16,7 @@
   },
   "homepage": "http://food-o-rama.s3-website.us-east-2.amazonaws.com/",
   "dependencies": {
-    "@angular-devkit/build-angular": "^0.800.6",
+    "@angular-devkit/build-angular": "^15.0.4",
     "@angular/animations": "^8.0.3",
     "@angular/common": "^8.0.3",
     "@angular/compiler": "^8.0.3",
